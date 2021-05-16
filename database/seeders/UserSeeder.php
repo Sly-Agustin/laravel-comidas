@@ -27,6 +27,13 @@ class UserSeeder extends Seeder
             $usuario->isAdmin = false;
             $usuario->save();
         }
+        $usuario = new User;
+        $usuario->name = 'Agustin';
+        $usuario->email = 'agustin_sly@hotmail.com';
+        $usuario->password = Hash::make('contrasenia');
+        $usuario->api_token = bin2hex(openssl_random_pseudo_bytes(30));
+        $usuario->isAdmin = true;
+        $usuario->save();
 
         // \App\Models\User::factory()->count(10)->create();  Ver como usar el factory más adelante
     }
