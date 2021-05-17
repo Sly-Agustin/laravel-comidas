@@ -11,4 +11,8 @@ class Paso extends Model
 
     public $timestamps = false;
     protected $primaryKey = 'id_paso';
+
+    public function receta(){
+        return $this->belongsTo('App\Models\Receta', 'receta_id', 'id_receta');
+    }
 }
