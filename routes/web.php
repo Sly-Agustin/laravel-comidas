@@ -23,5 +23,5 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 // Grupo admin, las rutas que solo puedan ser accedidas por administradores van acá
 Route::group(['middleware' => ['admin']], function () {
-    Route::get('admin-view', [App\Http\Controllers\PagesController::class, 'inicioAdmin'])->name('admin.view');
+    Route::get('admin-view', [App\Http\Controllers\HomeController::class, 'adminView'])->name('admin.view');
 });
