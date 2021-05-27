@@ -16,3 +16,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+// Grupo admin, las rutas que solo puedan ser accedidas por administradores van acá
+Route::group(['middleware' => ['admin']], function () {
+    Route::get('admin-view', [App\Http\Controllers\PagesController::class, 'inicioAdmin'])->name('admin.view');
+});
