@@ -1,0 +1,37 @@
+.bgFooter{
+    background-color: #fc7474; /*adb5bd*/
+}
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 100px;
+}
+.footerTitulo{
+    color: #000000;
+    font-size: 20px;
+}
+.footerFuente {
+    color: #000000;
+    font-size: 14px;
+    letter-spacing: 1px;
+    font-weight: lighter; 
+}
+
+.fontRoboto {
+    font-family: 'Roboto', sans-serif;
+}
+
+li .nav-link {
+    color: #000000
+}
+
+/*html {
+    position: relative;
+    min-height: 100%;
+}*/
+body {
+    /* Margin bottom by footer height */
+    margin-bottom: 120px;
+}

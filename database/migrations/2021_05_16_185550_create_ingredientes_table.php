@@ -15,10 +15,12 @@ class CreateIngredientesTable extends Migration
     {
         Schema::create('ingredientes', function (Blueprint $table) {
             $table->id('id_ingrediente');
-            $table->string('nombre');
+            $table->string('nombre')->unique();
             $table->string('ubicacion')->nullable();
-            $table->string('descripcion');
-            $table->string('caracteristicas')->nullable();
+            $table->longText('descripcion')->nullable();
+            $table->longText('caracteristicas')->nullable();
+            $table->string('tipo')->nullable();
+            $table->longText('imagen')->nullable();
         });
     }
 
