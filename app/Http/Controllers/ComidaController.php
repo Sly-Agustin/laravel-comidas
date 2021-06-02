@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Comida;
 
 class ComidaController extends Controller
 {
@@ -15,4 +16,9 @@ class ComidaController extends Controller
     
     La implementación de las mismas queda pendiente para la parte de "vistas y roles"
     */
+
+    public function todasComidas(){
+        $comidas=Comida::where('isVisible', true)->paginate(12);
+        return view('Comida.comida', compact('comidas'));
+    }
 }

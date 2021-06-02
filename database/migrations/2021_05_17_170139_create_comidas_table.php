@@ -17,8 +17,9 @@ class CreateComidasTable extends Migration
             $table->id('id_comida');
             $table->string('nombre');
             $table->string('ubicacion')->nullable();
-            $table->string('videos');
+            $table->string('video')->nullable();
             $table->longText('imagen')->nullable();
+            $table->boolean('isVisible');
         });
     }
 

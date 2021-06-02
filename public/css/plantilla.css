@@ -34,4 +34,5 @@ li .nav-link {
 body {
     /* Margin bottom by footer height */
     margin-bottom: 120px;
+    padding-bottom: 120px; 
 }

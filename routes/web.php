@@ -38,5 +38,8 @@ Route::get('ingredientes/{id}', [App\Http\Controllers\IngredienteController::cla
 Route::post('ingredientes/{id}', [App\Http\Controllers\IngredienteController::class, 'updateDescripcion'])->name('ingrediente.updateDescripcion');
 Route::get('ingredientes/filtro/{tipo}', [App\Http\Controllers\IngredienteController::class, 'filtroCategoria'])->name('ingrediente.filtro');
 
+// Rutas comidas
+Route::get('comidas', [App\Http\Controllers\ComidaController::class, 'todasComidas'])->name('comida.comida');
+
 // TESTING
 Route::get('/test', [App\Http\Controllers\TestController::class, 'test'])->name('test');
