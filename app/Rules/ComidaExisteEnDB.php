@@ -27,8 +27,13 @@ class ComidaExisteEnDB implements Rule
     public function passes($attribute, $value)
     {
         $minuscula=strtolower($value);
-        $estaEnDB=Comida::find(1);
-        return $estaEnDB==null;
+        $estaEnDB=Comida::where('nombre', $minuscula)->get();
+        if ($estaEnDB=='[]'){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     /**
