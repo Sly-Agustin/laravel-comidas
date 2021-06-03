@@ -34,7 +34,7 @@
         <div class="container d-flex justify-content-end">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="{{ route('comida.comida')}}">
                     Comidas
                     </a>
                 </li>

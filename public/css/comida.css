@@ -10,3 +10,13 @@ li.page-item.active span.page-link{
 li.page-item a.page-link{
     color: #000000;
 }
+
+.fit-image{
+    width: 100%;
+    object-fit: cover;
+    height: 300px; 
+}
+
+.containerBg{
+    background: #e0e0e0;
+}

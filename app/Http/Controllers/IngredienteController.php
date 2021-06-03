@@ -51,7 +51,7 @@ class IngredienteController extends Controller
 
     public function modificarIngrediente($id){
         $ingrediente = Ingrediente::findOrFail($id);
-        return view('Ingrediente.ingredienteModificar', compact('ingrediente'));;
+        return view('Ingrediente.ingredienteModificar', compact('ingrediente'));
     }
 
     public function updateIngrediente(UpdateIngredienteRequest $request, $id){

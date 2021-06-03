@@ -35,3 +35,21 @@
 .normalButton:hover{
     background: #ff5c5c;
 }
+
+.passiveButton{
+    position: relative;
+    display: inline-block;
+    font-size: 16px;
+    padding: 0.375rem 0.75rem;
+    margin: 10px 0;
+    color: #fc7474;
+    background: #FFFFFF; 
+    text-decoration: none;
+    transition:0.5s;
+    letter-spacing: 1px;
+    border: 1px solid #fc7474;
+}
+.passiveButton:hover {
+    background: #fc7474;
+    color: #FFFFFF;
+}

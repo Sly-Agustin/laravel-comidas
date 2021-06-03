@@ -27,6 +27,12 @@ Route::group(['middleware' => ['admin']], function () {
     Route::get('admin-view', [App\Http\Controllers\HomeController::class, 'adminView'])->name('admin.view');
     Route::get('ingredientes/modificar/{ingrediente}', [App\Http\Controllers\IngredienteController::class, 'modificarIngrediente'])->name('ingrediente.modificar');
     Route::post('ingredientes/modificar/modificado/{id}', [App\Http\Controllers\IngredienteController::class, 'updateIngrediente'])->name('ingrediente.update');
+    Route::get('comida/modificar/{comida}', [App\Http\Controllers\ComidaController::class, 'modificarComida'])->name('comida.modificar');
+    Route::post('comida/modificar/modificado/{comida}', [App\Http\Controllers\ComidaController::class, 'updateComida'])->name('comida.update');
+});
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('comida/crear', [App\Http\Controllers\ComidaController::class, 'crearComida'])->name('comida.crear');
+    Route::post('comida/crear', [App\Http\Controllers\ComidaController::class, 'store'])->name('comida.store');
 });
 
 // Rutas usuario
@@ -40,6 +46,8 @@ Route::get('ingredientes/filtro/{tipo}', [App\Http\Controllers\IngredienteContro
 
 // Rutas comidas
 Route::get('comidas', [App\Http\Controllers\ComidaController::class, 'todasComidas'])->name('comida.comida');
+Route::get('comidas/{id}', [App\Http\Controllers\ComidaController::class, 'comidaDetallado'])->name('comida.detallado');
+Route::post('comidas/{id}', [App\Http\Controllers\ComidaController::class, 'updateDescripcion'])->name('comida.updateDescripcion');
 
 // TESTING
 Route::get('/test', [App\Http\Controllers\TestController::class, 'test'])->name('test');

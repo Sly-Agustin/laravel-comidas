@@ -15,7 +15,8 @@ class CreateComidasTable extends Migration
     {
         Schema::create('comidas', function (Blueprint $table) {
             $table->id('id_comida');
-            $table->string('nombre');
+            $table->string('nombre')->unique();
+            $table->longText('descripcion')->nullable();
             $table->string('ubicacion')->nullable();
             $table->string('video')->nullable();
             $table->longText('imagen')->nullable();
