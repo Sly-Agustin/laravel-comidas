@@ -30,9 +30,12 @@ Route::group(['middleware' => ['admin']], function () {
     Route::get('comida/modificar/{comida}', [App\Http\Controllers\ComidaController::class, 'modificarComida'])->name('comida.modificar');
     Route::post('comida/modificar/modificado/{comida}', [App\Http\Controllers\ComidaController::class, 'updateComida'])->name('comida.update');
 });
+// Grupo usuarios, las rutas pueden ser accedidas por usuarios y administradores
 Route::group(['middleware' => ['auth']], function () {
     Route::get('comida/crear', [App\Http\Controllers\ComidaController::class, 'crearComida'])->name('comida.crear');
     Route::post('comida/crear', [App\Http\Controllers\ComidaController::class, 'store'])->name('comida.store');
+    Route::get('comidas/{id}/agregarReceta', [App\Http\Controllers\RecetaController::class, 'crearReceta'])->name('receta.crear');
+    Route::post('comidas/{id}/agregarReceta', [App\Http\Controllers\RecetaController::class, 'store'])->name('receta.store');
 });
 
 // Rutas usuario
@@ -48,6 +51,9 @@ Route::get('ingredientes/filtro/{tipo}', [App\Http\Controllers\IngredienteContro
 Route::get('comidas', [App\Http\Controllers\ComidaController::class, 'todasComidas'])->name('comida.comida');
 Route::get('comidas/{id}', [App\Http\Controllers\ComidaController::class, 'comidaDetallado'])->name('comida.detallado');
 Route::post('comidas/{id}', [App\Http\Controllers\ComidaController::class, 'updateDescripcion'])->name('comida.updateDescripcion');
+Route::post('comidas/{id}/addfoto', [App\Http\Controllers\ComidaController::class, 'updateFoto'])->name('comida.updateFoto');
+
+// Rutas recetas
 
 // TESTING
 Route::get('/test', [App\Http\Controllers\TestController::class, 'test'])->name('test');

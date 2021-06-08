@@ -61,7 +61,7 @@
                     </div>
                     <div class="form-group col-md-12">
                         <label for="imagen">Actualizar imagen</label>
-                        <input type="file" name="imagen" class="px-2 py-2">
+                        <input type="file" name="imagen" accept="image/*" class="px-2 py-2">
                         <div>{{ $errors->first('image') }}</div>
                     </div>
                     <div class="text-center">

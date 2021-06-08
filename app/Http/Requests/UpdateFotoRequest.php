@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use App\Rules\EsImagenValida;
 
-class UpdateComidaRequest extends FormRequest
+class UpdateFotoRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,15 +25,13 @@ class UpdateComidaRequest extends FormRequest
     public function rules()
     {
         return [
-            'visibilidadComida' => ['required', 'in:Visible,Invisible'],
-            'imagen' => ['nullable', new EsImagenValida],
+            'imagen' => ['required', new EsImagenValida]
         ];
     }
 
     public function messages(){
         return [
-            'visibilidadComida.required' => 'Debe especificarse la visibilidad, este error solo puede saltar modificando el html, no lo haga por favor',
-            'visibilidadComida.in' => 'La visibilidad solo puede ser visible o invisible, este error solo puede saltar modificando el html, no lo haga por favor',
+            'imagen.required' => 'Es necesaria una imagen',
         ];
     }
 

@@ -15,8 +15,7 @@ class CreateSeUtilizaEnsTable extends Migration
     {
         Schema::create('se_utiliza_ens', function (Blueprint $table) {
             $table->id('id_utilizaen');
-            $table->double('cantidad');
-            $table->string('cantidadSistema');
+            $table->string('cantidad');
             $table->unsignedInteger('receta_id');       //Referencia a la ID de la receta
             $table->unsignedInteger('ingrediente_id');  //Referencia a la ID del ingrediente
         });

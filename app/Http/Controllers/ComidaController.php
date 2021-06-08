@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Comida;
+use App\Models\Receta;
 use App\Http\Requests\UpdateDescripcionComidaRequest;
 use App\Http\Requests\UpdateComidaRequest;
+use App\Http\Requests\UpdateFotoRequest;
 use App\Http\Requests\StoreComidaRequest;
 use Auth;
 use Validator;
@@ -26,7 +28,8 @@ class ComidaController extends Controller
 
     public function comidaDetallado($id){
         $comida=Comida::findOrFail($id);
-        return view('Comida.comidaDetalle', compact('comida'));
+        $recetas=Receta::all()->where('comida_id', $id);
+        return view('Comida.comidaDetalle', compact('comida'), compact('recetas'));
     }
 
     public function updateDescripcion(UpdateDescripcionComidaRequest $request, $idComida){
@@ -45,6 +48,26 @@ class ComidaController extends Controller
     public function modificarComida($id){
         $comida = Comida::findOrFail($id);
         return view('Comida.comidaModificar', compact('comida'));
+    }
+
+    public function updateFoto(UpdateFotoRequest $request, $idComida){
+        $validator = Validator::make($request->all(), $request->rules(), $request->messages());
+        if (!Auth::check()){
+            return back()->with('mensajeLogin', 'Es necesario estar logueado para actualizar la foto');
+        }
+        if ($validator->valid()){
+            $comidaAUpdatear = Comida::findOrFail($idComida);
+            try{
+                $file = $request->file('image');
+                $image = base64_encode(file_get_contents($request->file('imagen')->path()));
+                $comidaAUpdatear->imagen=$image;
+                $comidaAUpdatear->save();
+            }
+            catch(FileNotFoundException $e){
+                echo 'catch';
+            }
+        }
+        return back()->with('mensaje', 'Foto actualizada');
     }
 
     public function updateComida(UpdateComidaRequest $request, $id){
@@ -76,15 +99,17 @@ class ComidaController extends Controller
             else {
                 $comida->isVisible=false;
             }
+
+            /*Setear la imagen (si hay), el try es necesario porque estamos trabajando con archivos aunque nunca va
+            a saltar el error porque comprobamos antes que el request tenía un archivo */
             if ($request->hasFile('imagen')) {
-                if($request->file('imagen')->isValid()) {
-                    try {
-                        $file = $request->file('image');
-                        $image = base64_encode(file_get_contents($request->file('imagen')->path()));
-                        $comida->imagen=$image;
-                    } catch (FileNotFoundException $e) {
-                        echo "catch";
-                    }
+                try{
+                    $file = $request->file('image');
+                    $image = base64_encode(file_get_contents($request->file('imagen')->path()));
+                    $comida->imagen=$image;
+                }
+                catch(FileNotFoundException $e){
+                    echo 'catch';
                 }
             }
             $comida->save();

@@ -75,7 +75,7 @@
                             <div class="form-group row">
                                 <label for="imagen" class="col-md-4 col-form-label text-md-right">Imagen</label>
                                 <div class="col-md-6">   
-                                    <input type="file" name="imagen" class="px-2 py-2">
+                                    <input type="file" name="imagen" accept="image/*" class="px-2 py-2">
                                 </div>
                                 <div>{{ $errors->first('image') }}</div>
                             </div>

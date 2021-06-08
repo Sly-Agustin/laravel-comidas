@@ -17,6 +17,7 @@ class CreatePasosTable extends Migration
             $table->id('id_paso');
             $table->unsignedInteger('receta_id');       //Referencia a la ID de la receta
             $table->integer('numeroDePaso');
+            $table->string('titulo');
             $table->string('descripcion');
         });
     }

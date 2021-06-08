@@ -18,6 +18,8 @@ class CreateRecetasTable extends Migration
             $table->double('rate');
             $table->unsignedInteger('comida_id');       //Referencia a la ID de la comida
             $table->unsignedInteger('usuario_id');      //Referencia a la ID del usuario
+            $table->string('usuario_nombre');
+            $table->string('video');
         });
     }
 
