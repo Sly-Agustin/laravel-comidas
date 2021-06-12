@@ -36,6 +36,13 @@
                         <label>Caracteristicas</label>
                         <input type="text" name="caracteristicasIngrediente" class="form-control" id="inputCaracteristica" placeholder="{{$ingrediente->caracteristicas}}" value="{{ old('caracteristicasIngrediente') }}">
                     </div>
+                    <div class="form-group col-md-6">
+                        <label>Es visible al resto de los usuario? (Es decir está baneado o no)</label>
+                        <select name="visibilidadIngrediente" class="form-control form-control-sm">
+                            <option value="1">Visible</option>
+                            <option value="0">Invisible</option>
+                        </select>
+                    </div>
                     <div class="form-group col-md-12">
                         <label for="imagen">Actualizar imagen</label>
                         <input type="file" name="imagen" class="px-2 py-2">

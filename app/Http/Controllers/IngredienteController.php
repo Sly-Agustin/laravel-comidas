@@ -40,13 +40,17 @@ class IngredienteController extends Controller
     }
 
     public function todosIngredientes(){
-        $ingredientes=Ingrediente::all();
+        $ingredientes=Ingrediente::all()->where('isVisible', true);
         $ingredientes=$ingredientes->sortBy('nombre');
         return view('Ingrediente.ingredientes', compact('ingredientes'));
     }
 
     public function filtroCategoria($tipo){
         $ingredientes = Ingrediente::where('tipo', $tipo)->paginate(20);
+        return view('Ingrediente.ingredientes', compact('ingredientes'));
+    }
+    public function ingredientesBaneados(){
+        $ingredientes = Ingrediente::where('isVisible', false)->paginate(20);
         return view('Ingrediente.ingredientes', compact('ingredientes'));
     }
 
@@ -60,11 +64,13 @@ class IngredienteController extends Controller
         if(!Auth::user()->isAdmin){
             return back()->with('mensajeError', 'Esta acción solo puede ser ejecutada por administradores');
         }
-        if ((!$request->hasFile('imagen')) && ($request->descripcionIngrediente==null) && ($request->tipoIngrediente==null) && ($request->ubicacionIngrediente==null) && ($request->caracteristicasIngrediente==null)){
+        $ingrediente=Ingrediente::findOrFail($id);
+        
+        if ((!$request->hasFile('imagen')) && ($request->visibilidadIngrediente==$ingrediente->isVisible) && ($request->descripcionIngrediente==null) && ($request->tipoIngrediente==null) && ($request->ubicacionIngrediente==null) && ($request->caracteristicasIngrediente==null)){
             return back()->with('mensajeError', 'Ningun atributo actualizado, llene al menos un campo o suba una imagen nueva');
         }
 
-        $ingrediente=Ingrediente::findOrFail($id);
+        $ingrediente->isVisible=$request->visibilidadIngrediente;
         if (!$request->descripcionIngrediente==null){
             $ingrediente->descripcion=$request->descripcionIngrediente;
         }

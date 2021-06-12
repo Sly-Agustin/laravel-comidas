@@ -26,6 +26,11 @@ class ComidaController extends Controller
         return view('Comida.comida', compact('comidas'));
     }
 
+    public function comidasBaneadas(){
+        $comidas=Comida::where('isVisible', false)->paginate(12);
+        return view('Comida.comida', compact('comidas'));
+    }
+
     public function comidaDetallado($id){
         $comida=Comida::findOrFail($id);
         $recetas=Receta::where('comida_id', $id)->paginate(10);
@@ -124,24 +129,21 @@ class ComidaController extends Controller
 
     public function store(StoreComidaRequest $request){
         $validator = Validator::make($request->all(), $request->rules(), $request->messages());
-        
-        # Hacer refactor de todo lo que está validado abajo, pasarlo a reglas de validación custom en el validator
-        # de esta manera se va a evitar código duplicado y mejorar la legibilidad.
 
         if ($validator->valid()){
             $comida=new Comida;
+            /* Guardar el nombre de la comida en minuscula para evitar que se dupliquen los nombres,
+            de todas formas el validador chequea que no exista antes de esta instancia*/
             $comida->nombre=strtolower($request->nombre);
             $comida->descripcion=$request->comidaDescripcion;
             $comida->ubicacion=$request->comidaUbicacion;
-            if (!$request->comidaVideo==null){
-                if (preg_match("^(https?\:\/\/)?(www\.youtube\.com|youtu\.?be)\/.+$^", $request->comidaVideo) == 1){
-                    $idYoutube=substr($request->comidaVideo, -11);
-                    $comida->video=$idYoutube;
-                }
-                else {
-                    return back()->with('mensajeError', 'Link de youtube no válido');
-                }
+            if (!$request->videoComida==null){
+                /*Se obtiene la id del video de youtube de esta forma */
+                $idYoutube=substr($request->videoComida, -11);
+                $comida->video=$idYoutube;
             }
+            /*Las verificaciones de validez de imagen se hacen en el validador, esto solo es para asegurarnos
+            de que haya un archivo no nulo y lo pasemos a base64 de forma correcta */
             if ($request->hasFile('imagen')) {
                 if($request->file('imagen')->isValid()) {
                     try {
@@ -153,7 +155,6 @@ class ComidaController extends Controller
                     }
                 }
             }
-            
             $comida->isVisible=true;
             $comida->save();
             return back()->with('mensaje', 'Comida creada con exito');

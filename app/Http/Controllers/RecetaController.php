@@ -45,12 +45,17 @@ class RecetaController extends Controller
         $arrayDePasos=[];
         $arrayDeIngredientes=[];
 
+        /*Como el request va a tener atributos que van a diferentes tablas de la base de datos y que además se crean de forma
+        dinánica con javascript (es decir que no tenemos un número fijo) es necesario un foreach donde analicemos con que 
+        key estamos trabajando y en base a ello trabajar de forma específica*/
         foreach($request->keys() as $key){
+            // La key es el video de la comida
             if ($key=="videoComida"){
-                //$receta->video=$request->get($key);
                 $idYoutube=substr($request->get($key), -11);
                 $receta->video=$idYoutube;
             }
+            /* La key es el título de un paso, los títulos están compuestos por "titulosPaso" seguidos de un número, por ejemplo
+            "tituloPaso5"*/
             if (str_contains($key, "tituloPaso")){
                 if ($request->get($key)==null){
                     return back()->with('mensajeError', 'Debe ponerle nombres a los pasos');
@@ -59,6 +64,9 @@ class RecetaController extends Controller
                 puedo obtener los valores de los mismos para crear los pasos en la base de datos.*/
                 $longitudLlave=strlen($key);
                 $numero = substr($key, ($longitudLlave-1), 1);
+                /*Si existe un título entonces existe una descripción con el mismo número que el título, trato de
+                obtenerlo directamente y en caso de que sea nulo significa que el usuario no completó ese campo, 
+                volvemos avisándole que debería completarlo*/
                 $cuerpoDelPasoKey="descripcionPaso";
                 $cuerpoDelPasoKey.=$numero;
                 if ($request->get($cuerpoDelPasoKey)==null){
@@ -72,6 +80,7 @@ class RecetaController extends Controller
 
                 array_push($arrayDePasos, $paso);
             }
+            /*El razonamiento de esto es muy parecido al de "tituloPaso" */
             if (str_contains($key, "nombreIngrediente")){
                 if ($request->get($key)==null){
                     return back()->with('mensajeError', 'Ingrediente nulo, esto solo se puede lograr modificando el html de la página');
@@ -98,6 +107,8 @@ class RecetaController extends Controller
                 array_push($arrayDeIngredientes, $seUtilizaEn);
             }
         }
+        /* Estos save solo pueden producirse una vez se hayan validado los datos y se sepa que no van a causar problemas
+        de forma que o se guardan los 3 o no se guarda ninguno*/
         $receta->save();
         foreach($arrayDePasos as $elemento){
             $elemento->receta_id=$receta->id_receta;

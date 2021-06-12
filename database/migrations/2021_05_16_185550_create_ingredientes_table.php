@@ -21,6 +21,7 @@ class CreateIngredientesTable extends Migration
             $table->longText('caracteristicas')->nullable();
             $table->string('tipo')->nullable();
             $table->longText('imagen')->nullable();
+            $table->boolean('isVisible');
         });
     }
 

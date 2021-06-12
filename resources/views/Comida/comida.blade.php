@@ -17,6 +17,9 @@
         <p class="d-inline">¿Querés agregar una comida que no aparezca? Es necesario estar logueado ¿No tenes cuenta?</p>
         <a href="{{ route('register') }}" role="button" class="passiveButton rounded mr-2 text-decoration-none">Crea una cuenta!</a>
         @endif
+        @if(Auth::user()->isAdmin)
+            <p>Para ver las comidas baneadas <a href="{{ route('comidas.baneadas') }}">haz click aquí</a></p>
+        @endif
         <div class="row">
             @foreach($comidas as $comida)
             <div class="col-sm-4">

@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use App\Rules\ComidaExisteEnDB;
+use App\Rules\EsVideoYoutubeValido;
 
 class StoreComidaRequest extends FormRequest
 {
@@ -25,7 +26,8 @@ class StoreComidaRequest extends FormRequest
     public function rules()
     {
         return [
-            'nombre' => ['required', 'min:4', 'unique:comidas', new ComidaExisteEnDB]   # El unique es redundante? Creo que ya se comprueba en la regla ComidaExisteEnDB. Testear
+            'nombre' => ['required', 'min:4', 'unique:comidas', new ComidaExisteEnDB],   # El unique es redundante? Creo que ya se comprueba en la regla ComidaExisteEnDB. Testear
+            'videoComida' => ['nullable', new EsVideoYoutubeValido],
         ];
     }
 

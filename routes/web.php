@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('test');
+    return view('inicio');
 })->name('inicio');
 
 Auth::routes();
@@ -29,6 +29,8 @@ Route::group(['middleware' => ['admin']], function () {
     Route::post('ingredientes/modificar/modificado/{id}', [App\Http\Controllers\IngredienteController::class, 'updateIngrediente'])->name('ingrediente.update');
     Route::get('comida/modificar/{comida}', [App\Http\Controllers\ComidaController::class, 'modificarComida'])->name('comida.modificar');
     Route::post('comida/modificar/modificado/{comida}', [App\Http\Controllers\ComidaController::class, 'updateComida'])->name('comida.update');
+    Route::get('ingredientes/baneados', [App\Http\Controllers\IngredienteController::class, 'ingredientesBaneados'])->name('ingrediente.baneados');
+    Route::get('comidas/baneadas', [App\Http\Controllers\ComidaController::class, 'comidasBaneadas'])->name('comidas.baneadas');
 });
 // Grupo usuarios, las rutas pueden ser accedidas por usuarios y administradores
 Route::group(['middleware' => ['auth']], function () {
@@ -62,6 +64,3 @@ Route::get('comidas/{idComida}/{idReceta}', [App\Http\Controllers\RecetaControll
 // Rutas de búsqueda
 Route::post('busqueda', [App\Http\Controllers\BusquedaController::class, 'busqueda'])->name('busqueda');
 Route::get('busqueda', [App\Http\Controllers\BusquedaController::class, 'busquedaPage'])->name('busquedaPage');
-
-// TESTING
-Route::get('/test', [App\Http\Controllers\TestController::class, 'test'])->name('test');

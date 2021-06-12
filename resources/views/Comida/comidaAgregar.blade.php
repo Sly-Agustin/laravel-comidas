@@ -67,9 +67,9 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="comidaVideo" class="col-md-4 col-form-label text-md-right">Video</label>
+                                <label for="videoComida" class="col-md-4 col-form-label text-md-right">Video</label>
                                 <div class="col-md-6">
-                                    <input id="comidaVideo" type="text" class="form-control" name="comidaVideo" value="{{ old('comidaVideo') }}">
+                                    <input id="videoComida" type="text" class="form-control" name="videoComida" value="{{ old('videoComida') }}">
                                 </div>
                             </div>
 
