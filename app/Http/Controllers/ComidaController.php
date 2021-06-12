@@ -28,7 +28,7 @@ class ComidaController extends Controller
 
     public function comidaDetallado($id){
         $comida=Comida::findOrFail($id);
-        $recetas=Receta::all()->where('comida_id', $id);
+        $recetas=Receta::where('comida_id', $id)->paginate(10);
         return view('Comida.comidaDetalle', compact('comida'), compact('recetas'));
     }
 

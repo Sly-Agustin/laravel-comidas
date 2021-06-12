@@ -18,6 +18,7 @@ class CreateSeUtilizaEnsTable extends Migration
             $table->string('cantidad');
             $table->unsignedInteger('receta_id');       //Referencia a la ID de la receta
             $table->unsignedInteger('ingrediente_id');  //Referencia a la ID del ingrediente
+            $table->string('nombreIngrediente');
         });
     }
 

@@ -103,12 +103,21 @@
             @else
                 <ul class="list-group">
                 @foreach ($recetas as $receta)
+                    
                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                        Receta de: {{$receta->usuario_nombre}}
-                        <span class="badge badge-colorBackground badge-pill">★ {{$receta->rate}}</span>
-                    </li>       
+                        <a href="{{ route('receta.detallado', [$comida->id_comida, $receta->id_receta])}}" class="text-decoration-none">Receta de: {{$receta->usuario_nombre}}</a>
+                        @if ($receta->cantidadVotos==0)
+                        <span class="badge badge-colorBackground badge-pill">No hay puntuación</span>
+                        @else
+                        <span class="badge badge-colorBackground badge-pill">★ <?php echo $receta->puntuacionTotal/$receta->cantidadVotos?></span>
+                        @endif
+                    </li>
+                               
                 @endforeach
                 </ul>
+                <div class="py-4">
+                    {{ $recetas->links() }}
+                </div>
                 <p class="mt-4 p-2 border-top">Ninguna te convence? Conocés una manera de hacerlo vos? <a href="{{ route('receta.crear', $comida->id_comida)}}">Crea una receta!</a></p>
             @endif
         </div>

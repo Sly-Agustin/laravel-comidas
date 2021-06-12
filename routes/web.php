@@ -36,6 +36,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('comida/crear', [App\Http\Controllers\ComidaController::class, 'store'])->name('comida.store');
     Route::get('comidas/{id}/agregarReceta', [App\Http\Controllers\RecetaController::class, 'crearReceta'])->name('receta.crear');
     Route::post('comidas/{id}/agregarReceta', [App\Http\Controllers\RecetaController::class, 'store'])->name('receta.store');
+    Route::post('comidas/{idComida}/{idReceta}', [App\Http\Controllers\RecetaController::class, 'votarReceta'])->name('receta.votar');
 });
 
 // Rutas usuario
@@ -54,6 +55,11 @@ Route::post('comidas/{id}', [App\Http\Controllers\ComidaController::class, 'upda
 Route::post('comidas/{id}/addfoto', [App\Http\Controllers\ComidaController::class, 'updateFoto'])->name('comida.updateFoto');
 
 // Rutas recetas
+Route::get('comidas/{idComida}/{idReceta}', [App\Http\Controllers\RecetaController::class, 'recetaDetallado'])->name('receta.detallado');
+
+// Rutas de búsqueda
+Route::post('busqueda', [App\Http\Controllers\BusquedaController::class, 'busqueda'])->name('busqueda');
+Route::get('busqueda', [App\Http\Controllers\BusquedaController::class, 'busquedaPage'])->name('busquedaPage');
 
 // TESTING
 Route::get('/test', [App\Http\Controllers\TestController::class, 'test'])->name('test');

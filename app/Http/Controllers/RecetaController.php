@@ -8,7 +8,9 @@ use App\Models\Receta;
 use App\Models\Ingrediente;
 use App\Models\Paso;
 use App\Models\SeUtilizaEn;
+use App\Models\Voto;
 use App\Http\Requests\StoreRecetaRequest;
+use App\Http\Requests\VotoRequest;
 use Auth;
 use Validator;
 
@@ -45,7 +47,9 @@ class RecetaController extends Controller
 
         foreach($request->keys() as $key){
             if ($key=="videoComida"){
-                $receta->video=$request->get($key);
+                //$receta->video=$request->get($key);
+                $idYoutube=substr($request->get($key), -11);
+                $receta->video=$idYoutube;
             }
             if (str_contains($key, "tituloPaso")){
                 if ($request->get($key)==null){
@@ -82,8 +86,10 @@ class RecetaController extends Controller
                 
                 $seUtilizaEn = new SeUtilizaEn;
                 $seUtilizaEn->cantidad=$request->get($cuerpoDelIngredienteKey);
+                
                 try{
                     $seUtilizaEn->ingrediente_id=Ingrediente::where('nombre', $request->get($key))->firstOrFail()->id_ingrediente;
+                    $seUtilizaEn->nombreIngrediente=Ingrediente::where('nombre', $request->get($key))->firstOrFail()->nombre;
                 }
                 catch(ModelNotFoundException $e){
                     return back()->with('mensajeError', 'Ingrediente no válido, esto solo se puede lograr modificando el html');
@@ -102,7 +108,32 @@ class RecetaController extends Controller
             $ingrediente->save();
         } 
         return back()->with('mensaje', 'Receta creada correctamente');
-        //return $request;
-        //return $stringdebug;
+    }
+
+    public function recetaDetallado($idComida, $idReceta){
+        $comida=Comida::findOrFail($idComida);
+        $receta=Receta::findOrFail($idReceta);
+        $pasos=Paso::all()->where('receta_id', $idReceta);
+        $seUtilizan=SeUtilizaEn::all()->where('receta_id', $idReceta);
+        $ingredientes=[];
+        foreach($seUtilizan as $id){
+            array_push($ingredientes, Ingrediente::findOrFail($id->ingrediente_id));
+        }
+        $voto=Voto::all()->where('usuario_id', Auth::User()->id)->where('receta_id', $idReceta);
+        return view('receta.recetaDetalle', compact('comida', 'receta', 'pasos', 'seUtilizan', 'ingredientes', 'voto'));
+    }
+
+    public function votarReceta(VotoRequest $request){
+        $receta=Receta::findOrFail($request->route('idReceta'));
+        $receta->puntuacionTotal+=$request->star;
+        $receta->cantidadVotos+=1;
+        $voto=new Voto;
+        $voto->valor=$request->star;
+        $voto->receta_id=$request->route('idReceta');
+        $voto->usuario_id=Auth::User()->id;
+        $voto->save();
+        $receta->save();
+
+        return back()->with('mensaje', 'Voto registrado');
     }
 }

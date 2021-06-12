@@ -24,8 +24,9 @@
         <div class="container d-flex justify-content-end">
             <nav class="navbar navbar-light">
                 <div class="container-fluid">
-                    <form class="d-flex">
-                        <input class="form-control me-2" type="search" placeholder="Buscar comida" aria-label="Buscar">
+                    <form action="{{ route('busqueda') }}" class="d-flex" method="POST">
+                        @csrf
+                        <input class="form-control me-2" name="busqueda" type="search" placeholder="Buscar comida" aria-label="Buscar">
                         <button class="btn btn-outline-success" type="submit">Buscar</button>
                     </form>
                 </div>

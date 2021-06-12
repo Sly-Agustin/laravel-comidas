@@ -10,7 +10,7 @@
             <div class="list-group list-group-flush">
                     <a href="{{route('ingrediente.filtro', 'especia')}}" class="list-group-item list-group-item-action bg-transparent border-secondary">Especias</a>
                     <a href="{{route('ingrediente.filtro', 'carne')}}" class="list-group-item list-group-item-action bg-transparent border-secondary">Carnes</a>
-                    <a href="{{route('ingrediente.filtro', 'aceite')}}" class="list-group-item list-group-item-action bg-transparent border-secondary">Aceites RAM</a>
+                    <a href="{{route('ingrediente.filtro', 'aceite')}}" class="list-group-item list-group-item-action bg-transparent border-secondary">Aceites</a>
                     <a href="{{route('ingrediente.filtro', 'lacteo')}}" class="list-group-item list-group-item-action bg-transparent border-secondary">Lacteos</a>
                     <a href="{{route('ingrediente.filtro', 'fiambre')}}" class="list-group-item list-group-item-action bg-transparent border-secondary">Fiambres</a>
                     <a href="" class="list-group-item list-group-item-action bg-transparent border-secondary"></a>
