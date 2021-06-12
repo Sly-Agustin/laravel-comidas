@@ -37,6 +37,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('comidas/{id}/agregarReceta', [App\Http\Controllers\RecetaController::class, 'crearReceta'])->name('receta.crear');
     Route::post('comidas/{id}/agregarReceta', [App\Http\Controllers\RecetaController::class, 'store'])->name('receta.store');
     Route::post('comidas/{idComida}/{idReceta}', [App\Http\Controllers\RecetaController::class, 'votarReceta'])->name('receta.votar');
+    Route::get('ingredientes/crear', [App\Http\Controllers\IngredienteController::class, 'crearIngrediente'])->name('ingrediente.crear');
+    Route::post('ingredientes/crear', [App\Http\Controllers\IngredienteController::class, 'store'])->name('ingrediente.store');
 });
 
 // Rutas usuario

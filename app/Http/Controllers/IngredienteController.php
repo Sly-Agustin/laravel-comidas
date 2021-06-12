@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Ingrediente;
 use App\Http\Requests\UpdateDescripcionIngredienteRequest;
 use App\Http\Requests\UpdateIngredienteRequest;
+use App\Http\Requests\StoreIngredienteRequest;
 use Auth;
 use Validator;
 
@@ -89,5 +90,30 @@ class IngredienteController extends Controller
         }
         $ingrediente->save();
         return back()->with('mensaje', 'Ingrediente modificado con exito');
+    }
+
+    public function crearIngrediente(){
+        return view('Ingrediente.ingredienteCrear');
+    }
+    public function store(StoreIngredienteRequest $request){
+        $ingrediente=new Ingrediente;
+        $ingrediente->nombre=strtolower($request->nombre);
+        $ingrediente->descripcion=$request->ingredienteDescripcion;
+        $ingrediente->caracteristicas=$request->ingredienteCaracteristicas;
+        $ingrediente->ubicacion=$request->ingredienteUbicacion;
+        $ingrediente->tipo=$request->ingredienteTipo;
+        if ($request->hasFile('imagen')) {
+            if($request->file('imagen')->isValid()) {
+                try {
+                    $file = $request->file('image');
+                    $image = base64_encode(file_get_contents($request->file('imagen')->path()));
+                    $ingrediente->imagen=$image;
+                } catch (FileNotFoundException $e) {
+                    echo "catch";
+                }
+            }
+        }
+        $ingrediente->save();
+        return back()->with('mensaje', 'Ingrediente agregado con exito!');
     }
 }

@@ -26,7 +26,7 @@
                 <div class="container-fluid">
                     <form action="{{ route('busqueda') }}" class="d-flex" method="POST">
                         @csrf
-                        <input class="form-control me-2" name="busqueda" type="search" placeholder="Buscar comida" aria-label="Buscar">
+                        <input class="form-control me-2" name="busqueda" type="search" placeholder="Buscar comida/ingrediente" aria-label="Buscar">
                         <button class="btn btn-outline-success" type="submit">Buscar</button>
                     </form>
                 </div>

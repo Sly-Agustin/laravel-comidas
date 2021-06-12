@@ -12,8 +12,9 @@ class BusquedaController extends Controller
         return redirect()->route('busquedaPage', ['elemento' => $request->busqueda]);
     }
     public function busquedaPage(Request $request){
-        $comidas = Comida::where('nombre', 'LIKE', '%'.$request->elemento.'%')->where('isVisible', true)->paginate(10);
-        $ingredientes = Ingrediente::where('nombre', 'LIKE', '%'.$request->elemento.'%')->paginate(10);
+        $busquedaEnMinuscula=strtolower($request->elemento);
+        $comidas = Comida::where('nombre', 'LIKE', '%'.$busquedaEnMinuscula.'%')->where('isVisible', true)->paginate(10);
+        $ingredientes = Ingrediente::where('nombre', 'LIKE', '%'.$busquedaEnMinuscula.'%')->paginate(10);
         return view('busqueda', compact('comidas', 'ingredientes'));
         //return "yeh";
     }

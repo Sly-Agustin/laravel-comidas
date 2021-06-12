@@ -2,6 +2,7 @@
 
 @section('stylesheets')
 <link rel="stylesheet" href="{{ asset('css/comida.css') }}">
+
 @section('seccion')
 <main class="py-4 fontRoboto">
     <div class="container">
@@ -39,7 +40,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header"></div>
+                    <div class="card-header">Formulario</div>
 
                     <div class="card-body">
                         <form method="POST" action="{{route('comida.store')}}" enctype="multipart/form-data">

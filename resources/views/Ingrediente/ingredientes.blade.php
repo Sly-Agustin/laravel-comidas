@@ -13,13 +13,23 @@
                     <a href="{{route('ingrediente.filtro', 'aceite')}}" class="list-group-item list-group-item-action bg-transparent border-secondary">Aceites</a>
                     <a href="{{route('ingrediente.filtro', 'lacteo')}}" class="list-group-item list-group-item-action bg-transparent border-secondary">Lacteos</a>
                     <a href="{{route('ingrediente.filtro', 'fiambre')}}" class="list-group-item list-group-item-action bg-transparent border-secondary">Fiambres</a>
+                    <a href="{{route('ingrediente.filtro', 'arroz')}}" class="list-group-item list-group-item-action bg-transparent border-secondary">Arroz</a>
+                    <a href="{{route('ingrediente.filtro', 'legumbre')}}" class="list-group-item list-group-item-action bg-transparent border-secondary">Legumbre</a>
+                    <a href="{{route('ingrediente.filtro', 'fruta')}}" class="list-group-item list-group-item-action bg-transparent border-secondary">Fruta</a>
+                    <a href="{{route('ingrediente.filtro', 'verdura')}}" class="list-group-item list-group-item-action bg-transparent border-secondary">Verdura</a>
+                    <a href="{{route('ingrediente.filtro', 'alcohol')}}" class="list-group-item list-group-item-action bg-transparent border-secondary">Alcohol</a>
+                    <a href="{{route('ingrediente.filtro', 'harina')}}" class="list-group-item list-group-item-action bg-transparent border-secondary">Harina</a>
+                    <a href="{{route('ingrediente.filtro', 'otro')}}" class="list-group-item list-group-item-action bg-transparent border-secondary">Otro</a>
                     <a href="" class="list-group-item list-group-item-action bg-transparent border-secondary"></a>
             </div>
         </div>
 
         <!--Lista-->
         <div class="container">
-            <h1 class="text-center text-secondary">Lista completa de ingredientes</h1>  
+            <h1 class="text-center text-secondary">Lista completa de ingredientes</h1> 
+            <div>
+                <p>Si no encontras el ingrediente que buscas podes crearlo haciendo <a href="{{route('ingrediente.crear')}}">click aquí</a></p>
+            </div> 
                 <table class="table">
                     <thead>
                         <tr>
