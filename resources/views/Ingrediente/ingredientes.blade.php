@@ -29,8 +29,10 @@
             <h1 class="text-center text-secondary">Lista completa de ingredientes</h1> 
             <div>
                 <p>Si no encontras el ingrediente que buscas podes crearlo haciendo <a href="{{route('ingrediente.crear')}}">click aquí</a></p>
-                @if(Auth::user()->isAdmin)
+                @if (Auth::user())
+                    @if(Auth::user()->isAdmin)
                 <p>Para ver los ingredientes baneados <a href="{{route('ingrediente.baneados')}}">haz click aquí</a></p>
+                    @endif
                 @endif
             </div> 
                 <table class="table">
