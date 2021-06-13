@@ -33,6 +33,7 @@ class EsImagenValida implements Rule
                 if ($size === false) {
                     return false;
                 }
+                return true;
 
                 /*Algunos archivos modificados pueden pasar la verificación de arriba, por ejemplo un script con atributos
                 de archivo seteados apropósito para hacerlo pasar por imagen. Sin embargo podemos tratar de crear la imagen
