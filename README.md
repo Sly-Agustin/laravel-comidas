@@ -32,10 +32,10 @@ Los administradores podrán:
 
 ## Usuarios por default
 La aplicación cuenta con 1 usuario administrador por default cuyas credenciales son:
-- mail: agustin_sly@hotmail.como
+- mail: agustin_sly@hotmail.com
 - contraseña: contrasenia
 También se cuenta con 10 cuentas usuario, reemplazar la X por un número del 1-9:
-- mail: usarioX@gmail.como
+- mail: usarioX@gmail.com
 - contraseña: contrasenia
 
 En caso de querer usar un usuario propio se puede crear con el botón "registrarse" en la parte superior derecha de la página.
