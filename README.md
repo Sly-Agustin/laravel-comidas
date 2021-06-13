@@ -10,7 +10,7 @@ El proyecto está relacionado directamente con el tema comida.
 
 ## Diagrama ER
 
-![diagramaiaw2021](https://user-images.githubusercontent.com/21326227/116289078-8bdebd80-a768-11eb-8de7-b68a9c3501e2.png)
+![diagramaiaw2021](https://user-images.githubusercontent.com/21326227/121816879-896eef00-cc54-11eb-86fb-8f5b794e4400.png)
 
 (El diagrama se encuentra sujeto a cambios en el futuro debido a mejoras, optimizaciones o ideas)
 
@@ -32,10 +32,10 @@ Los administradores podrán:
 
 ## Usuarios por default
 La aplicación cuenta con 1 usuario administrador por default cuyas credenciales son:
-- mail: agustin_sly@hotmail.como
+- mail: agustin_sly@hotmail.com
 - contraseña: contrasenia
 También se cuenta con 10 cuentas usuario, reemplazar la X por un número del 1-9:
-- mail: usarioX@gmail.como
+- mail: usarioX@gmail.com
 - contraseña: contrasenia
 
 En caso de querer usar un usuario propio se puede crear con el botón "registrarse" en la parte superior derecha de la página.
