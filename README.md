@@ -10,7 +10,7 @@ El proyecto está relacionado directamente con el tema comida.
 
 ## Diagrama ER
 
-![diagramaiaw2021](https://user-images.githubusercontent.com/21326227/116289078-8bdebd80-a768-11eb-8de7-b68a9c3501e2.png)
+![diagramaiaw2021](https://user-images.githubusercontent.com/21326227/121816575-d18d1200-cc52-11eb-8226-efa57e0f026f.png)
 
 (El diagrama se encuentra sujeto a cambios en el futuro debido a mejoras, optimizaciones o ideas)
 
