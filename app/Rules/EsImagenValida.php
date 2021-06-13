@@ -37,12 +37,13 @@ class EsImagenValida implements Rule
                 /*Algunos archivos modificados pueden pasar la verificación de arriba, por ejemplo un script con atributos
                 de archivo seteados apropósito para hacerlo pasar por imagen. Sin embargo podemos tratar de crear la imagen
                 a partir del archivo, si esto falla entonces no es una imagen. Esto agrega seguridad al sistema para evitar la
-                ejecución de scripts (o eso leí por ahí, si me equivoco corrijanme). */
-                $esImagen=imagecreatefromstring(file_get_contents($value->path()));
+                ejecución de scripts (o eso leí por ahí, si me equivoco corrijanme). 
+                No funciona en heroku, ver porque mientras tanto dejarlo comentado*/
+                /*$esImagen=imagecreatefromstring(file_get_contents($value->path()));
                 if (!$esImagen) {
                     return false;
                 }
-                return true;
+                return true;*/
             } 
             catch (FileNotFoundException $e) {
                 echo "catch";
