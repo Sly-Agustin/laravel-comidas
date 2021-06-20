@@ -54,3 +54,24 @@ function crearPaso(){
     tbl+="</div>";
     $("#divPasos2").append(tbl);
 }
+
+function crearIngrediente(ingredientes){
+    numeroDeIngredientesActuales++;
+    var tbl="";
+    tbl+="<div class='form-group row'>"+
+                "<label for='nombreIngrediente"+numeroDeIngredientesActuales+"' class='col-md-4 col-form-label text-md-right'>Ingrediente</label>"+
+                "<div class='col-md-6'>"+
+                    "<select class='form-control' id='nombreIngrediente"+numeroDeIngredientesActuales+"' name='nombreIngrediente"+numeroDeIngredientesActuales+"'>";
+                        for (var j=0; j<ingredientes.length; j++){
+                            tbl+="<option value='"+ingredientes[j].nombre+"'>"+ingredientes[j].nombre+"</option>";
+                        }
+                    tbl+="</select>"+
+                "</div>"+
+                "<label for='ingredienteCantidad"+numeroDeIngredientesActuales+"' class='col-md-4 col-form-label text-md-right'>Cantidad</label>"+
+                "<div class='col-md-6'>"+
+                    "<input id='ingredienteCantidad"+numeroDeIngredientesActuales+"' type='text' class='form-control' name='ingredienteCantidad"+numeroDeIngredientesActuales+"' value='' autofocus>"+
+                "</div>"+
+            "</div>";
+    tbl+="</div>";
+    $("#divIngredientes2").append(tbl);
+}
