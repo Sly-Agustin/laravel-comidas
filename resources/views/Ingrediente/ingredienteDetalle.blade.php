@@ -56,11 +56,25 @@
                 @csrf
                 <input type="text" name="descripcion" class="form-control" id="inputDescripcion" placeholder="Descripcion">
                 <button type="submit" id="agregarDescripcionButton" class="normalButton rounded active">Agregar descripcion</button>
+                </form>
             </div>
         </div>
         @endif
         @if ($datos->caracteristicas!=null)
         <p>Características: {{$datos->caracteristicas}} </p>
+        @endif
+        @if ($datos->imagen==null)
+        <a class="nav" data-toggle="collapse" href="#multiCollapseExample2" role="button" aria-expanded="false" aria-controls="multiCollapseExample2">Agregar imagen</a>
+        <div class="collapse multi-collapse" id="multiCollapseExample2">
+            <div class="card card-body">
+                <form action="{{ route('ingrediente.updateImagen', $datos->id_ingrediente) }}" method="POST" enctype="multipart/form-data">
+                @csrf   
+                <input type="file" name="imagen" accept="image/*" class="px-2 py-2">
+                <div>{{ $errors->first('image') }}</div>
+                <button type="submit" id="agregarFotoButton" class="normalButton rounded active">Agregar imagen</button>
+                </form>
+            </div>
+        </div>
         @endif
     </div>
 </main>

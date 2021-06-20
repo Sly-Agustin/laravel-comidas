@@ -50,13 +50,14 @@ Route::get('usuario/logout', [App\Http\Controllers\Auth\LoginController::class, 
 Route::get('ingredientes', [App\Http\Controllers\IngredienteController::class, 'todosIngredientes'])->name('ingrediente.ingredientes');
 Route::get('ingredientes/{id}', [App\Http\Controllers\IngredienteController::class, 'detallado'])->name('ingrediente.detallado');
 Route::post('ingredientes/{id}', [App\Http\Controllers\IngredienteController::class, 'updateDescripcion'])->name('ingrediente.updateDescripcion');
+Route::post('ingredientes/{id}/updatedImagen', [App\Http\Controllers\IngredienteController::class, 'updateImagen'])->name('ingrediente.updateImagen');
 Route::get('ingredientes/filtro/{tipo}', [App\Http\Controllers\IngredienteController::class, 'filtroCategoria'])->name('ingrediente.filtro');
 
 // Rutas comidas
 Route::get('comidas', [App\Http\Controllers\ComidaController::class, 'todasComidas'])->name('comida.comida');
 Route::get('comidas/{id}', [App\Http\Controllers\ComidaController::class, 'comidaDetallado'])->name('comida.detallado');
 Route::post('comidas/{id}', [App\Http\Controllers\ComidaController::class, 'updateDescripcion'])->name('comida.updateDescripcion');
-Route::post('comidas/{id}/addfoto', [App\Http\Controllers\ComidaController::class, 'updateFoto'])->name('comida.updateFoto');
+Route::post('comidas/{id}/addfoto/success', [App\Http\Controllers\ComidaController::class, 'updateFoto'])->name('comida.updateFoto');
 
 // Rutas recetas
 Route::get('comidas/{idComida}/{idReceta}', [App\Http\Controllers\RecetaController::class, 'recetaDetallado'])->name('receta.detallado');

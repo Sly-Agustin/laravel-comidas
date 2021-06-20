@@ -124,7 +124,7 @@ class ComidaController extends Controller
     }
 
     public function crearComida(){
-        return view('comida.comidaAgregar');
+        return view('Comida.comidaAgregar');
     }
 
     public function store(StoreComidaRequest $request){

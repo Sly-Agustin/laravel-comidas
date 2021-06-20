@@ -106,9 +106,9 @@
             
             <div class="col-md-4 col-sm-6 col-xs-12 text-center">
                 <p>Seguinos en nuestras redes!</p>    
-                <a class="navbar-link whiteColor" href="https://www.facebook.com/hardware-store" target="_blank" rel="noreferrer" aria-label="GitHub"><img width="60" id="facebook" src="{{url('images/facebook.png')}}" class="facebookImgInverted" alt="faceimg"></a> <!--El noreferrrer se utiliza por cuestiones de seguridad-->
-                <a class="navbar-link whiteColor" href="https://twitter.com/hardware-store" target="_blank" rel="noreferrer" aria-label="GitHub"><img width="60" id="twitter" src="{{url('images/twitter.png')}}" class="twitterImgInverted" alt="twitimg"></a>
-                <a class="navbar-link whiteColor" href="https://instagram.com/hardware-store" target="_blank" rel="noreferrer" aria-label="GitHub"><img width="60" id="instagram" src="{{url('images/instagram.png')}}" class="instagram" alt="instagramimg"></a>         
+                <a class="navbar-link whiteColor" href="" target="_blank" rel="noreferrer" aria-label="GitHub"><img width="60" id="facebook" src="{{url('images/facebook.png')}}" class="facebookImgInverted" alt="faceimg"></a> <!--El noreferrrer se utiliza por cuestiones de seguridad-->
+                <a class="navbar-link whiteColor" href="" target="_blank" rel="noreferrer" aria-label="GitHub"><img width="60" id="twitter" src="{{url('images/twitter.png')}}" class="twitterImgInverted" alt="twitimg"></a>
+                <a class="navbar-link whiteColor" href="" target="_blank" rel="noreferrer" aria-label="GitHub"><img width="60" id="instagram" src="{{url('images/instagram.png')}}" class="instagram" alt="instagramimg"></a>         
             </div>
             <div class="col-md-4 col-sm-6 col-xs-12 text-right">
                 <div>Iconos diseñados por <a href="https://www.flaticon.es/autores/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.es/" title="Flaticon">www.flaticon.es</a></div>

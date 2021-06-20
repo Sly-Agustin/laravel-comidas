@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Ingrediente;
 use App\Http\Requests\UpdateDescripcionIngredienteRequest;
 use App\Http\Requests\UpdateIngredienteRequest;
+use App\Http\Requests\UpdateFotoRequest;
 use App\Http\Requests\StoreIngredienteRequest;
 use Auth;
 use Validator;
@@ -37,6 +38,23 @@ class IngredienteController extends Controller
             $ingredienteAUpdatear->save();
         }
         return back()->with('mensaje', 'Descripción actualizada');
+    }
+
+    public function updateImagen(UpdateFotoRequest $request, $idIngrediente){
+        if (!Auth::check()){
+            return back()->with('mensajeLogin', 'Es necesario estar logueado para actualizar la imagen');
+        }
+        $ingredienteAUpdatear = Ingrediente::findOrFail($idIngrediente);
+        try{
+            $file = $request->file('image');
+            $image = base64_encode(file_get_contents($request->file('imagen')->path()));
+            $ingredienteAUpdatear->imagen=$image;
+            $ingredienteAUpdatear->save();
+        }
+        catch(FileNotFoundException $e){
+            echo 'catch';
+        }
+        return back()->with('mensaje', 'Foto actualizada');
     }
 
     public function todosIngredientes(){
