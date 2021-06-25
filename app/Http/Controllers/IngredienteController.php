@@ -84,7 +84,7 @@ class IngredienteController extends Controller
         }
         $ingrediente=Ingrediente::findOrFail($id);
         
-        if ((!$request->hasFile('imagen')) && ($request->visibilidadIngrediente==$ingrediente->isVisible) && ($request->descripcionIngrediente==null) && ($request->tipoIngrediente==null) && ($request->ubicacionIngrediente==null) && ($request->caracteristicasIngrediente==null)){
+        if ((!$request->hasFile('imagen')) && ($request->visibilidadIngrediente==$ingrediente->isVisible) && ($request->descripcionIngrediente==null) && (($request->tipoIngrediente==null) || ($request->tipoIngrediente=='default')) && ($request->ubicacionIngrediente==null) && ($request->caracteristicasIngrediente==null)){
             return back()->with('mensajeError', 'Ningun atributo actualizado, llene al menos un campo o suba una imagen nueva');
         }
 
@@ -93,7 +93,9 @@ class IngredienteController extends Controller
             $ingrediente->descripcion=$request->descripcionIngrediente;
         }
         if (!$request->tipoIngrediente==null){
-            $ingrediente->tipo=$request->tipoIngrediente;
+            if (!($request->tipoIngrediente=='default')){
+                $ingrediente->tipo=strtolower($request->tipoIngrediente);
+            }   
         }
         if (!$request->ubicacionIngrediente==null){
             $ingrediente->ubicacion=$request->ubicacionIngrediente;

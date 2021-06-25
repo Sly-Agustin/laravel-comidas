@@ -24,7 +24,8 @@ class UpdateIngredienteRequest extends FormRequest
     public function rules()
     {
         return [
-            'visibilidadIngrediente' => ['required','in:0,1']
+            'visibilidadIngrediente' => ['required','in:0,1'],
+            'tipoIngrediente' => ['in:default,especia,carne,aceite,lacteo,fiambre,arroz,legumbre,fruta,verdura,alcohol,otro,harina'],
         ];
     }
 
@@ -32,6 +33,7 @@ class UpdateIngredienteRequest extends FormRequest
         return [
             'visibilidadIngrediente.required' => 'Debe especificarse la visibilidad, este error solo puede saltar modificando el html, no lo haga por favor',
             'visibilidadIngrediente.in' => 'La visibilidad solo puede ser visible o invisible, este error solo puede saltar modificando el html, no lo haga por favor',
+            'tipoIngrediente.in' => 'Seleccionada una categoría de ingrediente inválida, esto solo puede hacerse modificando el HTML de la página, no lo haga por favor',
         ];
     }
 

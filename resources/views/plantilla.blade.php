@@ -44,11 +44,6 @@
                     Ingredientes
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                    Sobre nosotros
-                    </a>
-                </li>
             </ul>
         </div>
         <ul class="navbar-nav flex-row ml-md-auto d-gone d-md-flex text-decoration-none">

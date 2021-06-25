@@ -5,6 +5,15 @@
     <div class="container">
         <h1 class="text-center">Modificando {{$ingrediente->nombre}}</h1>
         <div class="text-center">
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif 
             <!--Ingrediente actualizado correctamente-->
             @if (session('mensaje'))
                 <div class="alert alert-success">
@@ -26,7 +35,21 @@
                     </div>
                     <div class="form-group col-md-6">
                         <label>Tipo</label>
-                        <input type="text" name="tipoIngrediente" class="form-control" id="inputTipo" placeholder="{{$ingrediente->tipo}}" value="{{ old('tipoIngrediente') }}">
+                        <select class="form-control" name="tipoIngrediente" id="ingredienteTipo">
+                            <option value="default">Seleccione una opcion</option>
+                            <option value="especia">Especia</option>
+                            <option value="carne">Carne</option>
+                            <option value="aceite">Aceite</option>
+                            <option value="lacteo">Lacteo</option>
+                            <option value="fiambre">Fiambre</option>
+                            <option value="arroz">Arroz</option>
+                            <option value="legumbre">Legumbre</option>
+                            <option value="fruta">Fruta</option>
+                            <option value="verdura">Verdura</option>
+                            <option value="alcohol">Alcohol</option>
+                            <option value="harina">Harina</option>
+                            <option value="otro">Otro</option>
+                        </select>
                     </div>         
                     <div class="form-group col-md-6">
                         <label>Ubicación</label>
