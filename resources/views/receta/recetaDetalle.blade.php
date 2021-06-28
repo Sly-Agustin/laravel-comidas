@@ -68,7 +68,11 @@
                     </form>
                 </div>
                 @else
-                <p>Ya votaste esta receta</p>
+                    @if(Auth::user())
+                    <p>Ya votaste esta receta</p>
+                    @else
+                    <p>Es necesario estar logueado para votar una receta</p>
+                    @endif 
                 @endif
             </div>
             <div class="col-sm-3 border-left">

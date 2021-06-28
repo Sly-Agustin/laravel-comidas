@@ -130,7 +130,12 @@ class RecetaController extends Controller
         foreach($seUtilizan as $id){
             array_push($ingredientes, Ingrediente::findOrFail($id->ingrediente_id));
         }
-        $voto=Voto::all()->where('usuario_id', Auth::User()->id)->where('receta_id', $idReceta);
+        if (Auth::User()){
+            $voto=Voto::all()->where('usuario_id', Auth::User()->id)->where('receta_id', $idReceta);
+        }
+        else{
+            $voto=(collect(['a']));
+        }
         return view('receta.recetaDetalle', compact('comida', 'receta', 'pasos', 'seUtilizan', 'ingredientes', 'voto'));
     }
 
