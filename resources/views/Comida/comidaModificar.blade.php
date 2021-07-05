@@ -41,23 +41,29 @@
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label>Descripcion del comida</label>
-                        <textarea type="text" name="descripcionComida" class="form-control" id="inputDescripcion" placeholder="{{$comida->descripcion}}" value="{{ old('descripcionComida') }}"></textarea>
+                        <textarea type="text" name="descripcionComida" class="form-control" id="inputDescripcion" >{{$comida->descripcion}}</textarea>
                     </div>     
                     <div class="form-group col-md-6">
                         <label>Ubicación</label>
-                        <input type="text" name="ubicacionComida" class="form-control" id="inputUbicacion" placeholder="{{$comida->ubicacion}}" value="{{ old('ubicacionComida') }}">
+                        <input type="text" name="ubicacionComida" class="form-control" id="inputUbicacion" value="{{$comida->ubicacion}}">
                     </div>
                     <div class="form-group col-md-6">
                         <label>Video</label>
-                        <input type="text" name="videoComida" class="form-control" id="inputVideo" placeholder="{{$comida->video}}" value="{{ old('videoComida') }}">
+                        <input type="text" name="videoComida" class="form-control" id="inputVideo" value="https://youtu.be/{{$comida->video}}">
                     </div>
                     <div class="form-group col-md-6">
                         <label>Es visible al resto de los usuario? (Es decir está baneado o no)</label>
-                        
+                        @if ($comida->isVisible)
                         <select name="visibilidadComida" class="form-control form-control-sm">
-                            <option value="Visible">Visible</option>
-                            <option value="Invisible">Invisible</option>
+                            <option value="1">Visible</option>
+                            <option value="0">Invisible</option>
                         </select>
+                        @else
+                        <select name="visibilidadComida" class="form-control form-control-sm">
+                            <option value="0">Invisible</option>
+                            <option value="1">Visible</option>
+                        </select>
+                        @endif
                     </div>
                     <div class="form-group col-md-12">
                         <label for="imagen">Actualizar imagen</label>

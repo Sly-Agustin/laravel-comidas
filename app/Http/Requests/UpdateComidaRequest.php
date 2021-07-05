@@ -25,7 +25,7 @@ class UpdateComidaRequest extends FormRequest
     public function rules()
     {
         return [
-            'visibilidadComida' => ['required', 'in:Visible,Invisible'],
+            'visibilidadComida' => ['required', 'in:0,1'],
             'imagen' => ['nullable', new EsImagenValida],
         ];
     }

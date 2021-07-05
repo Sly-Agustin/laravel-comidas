@@ -79,6 +79,9 @@ class ComidaController extends Controller
         $validator = Validator::make($request->all(), $request->rules(), $request->messages());
         if ($validator->valid()){
             $comida=Comida::findOrFail($id);
+            if((!$request->hasFile('imagen')) && ($request->descripcionComida==$comida->descripcion) && ($request->ubicacionComida==$comida->ubicacion) && (substr($request->videoComida, -11)==$comida->video) && ($request->visibilidadComida==$comida->isVisible)){
+                return back()->with('mensajeError', 'Ningun atributo actualizado, llene al menos un campo o suba una imagen nueva');
+            }
             if (!$request->descripcionComida==null){
                 $comida->descripcion=$request->descripcionComida;
             }
@@ -98,12 +101,13 @@ class ComidaController extends Controller
             # el mismo se encarga de determinar que los valores que lleguen sean "Visible" o "Invisible"
             # por lo tanto el else nunca nos va a setear la visibilidad de la comida en false cuando llegue
             # algo no válido.
-            if ($request->visibilidadComida=="Visible"){
+            /*if ($request->visibilidadComida=="Visible"){
                 $comida->isVisible=true;
             }
             else {
                 $comida->isVisible=false;
-            }
+            }*/
+            $comida->isVisible=$request->visibilidadComida;
 
             /*Setear la imagen (si hay), el try es necesario porque estamos trabajando con archivos aunque nunca va
             a saltar el error porque comprobamos antes que el request tenía un archivo */

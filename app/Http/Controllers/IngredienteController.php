@@ -74,6 +74,7 @@ class IngredienteController extends Controller
 
     public function modificarIngrediente($id){
         $ingrediente = Ingrediente::findOrFail($id);
+        //return $ingrediente;
         return view('Ingrediente.ingredienteModificar', compact('ingrediente'));
     }
 
@@ -84,7 +85,7 @@ class IngredienteController extends Controller
         }
         $ingrediente=Ingrediente::findOrFail($id);
         
-        if ((!$request->hasFile('imagen')) && ($request->visibilidadIngrediente==$ingrediente->isVisible) && ($request->descripcionIngrediente==null) && (($request->tipoIngrediente==null) || ($request->tipoIngrediente=='default')) && ($request->ubicacionIngrediente==null) && ($request->caracteristicasIngrediente==null)){
+        if ((!$request->hasFile('imagen')) && ($request->visibilidadIngrediente==$ingrediente->isVisible) && ($request->descripcionIngrediente==$ingrediente->descripcion) && (($request->tipoIngrediente==$ingrediente->tipo) || ($request->tipoIngrediente=='default' || $request->tipoIngrediente==$ingrediente->tipo)) && ($request->ubicacionIngrediente==$ingrediente->ubicacion) && ($request->caracteristicasIngrediente==$ingrediente->caracteristicas)){
             return back()->with('mensajeError', 'Ningun atributo actualizado, llene al menos un campo o suba una imagen nueva');
         }
 
