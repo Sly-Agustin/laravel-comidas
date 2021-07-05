@@ -49,7 +49,11 @@
                     </div>
                     <div class="form-group col-md-6">
                         <label>Video</label>
+                        @if ($comida->video!=null)
                         <input type="text" name="videoComida" class="form-control" id="inputVideo" value="https://youtu.be/{{$comida->video}}">
+                        @else
+                        <input type="text" name="videoComida" class="form-control" id="inputVideo" value="{{$comida->video}}">
+                        @endif
                     </div>
                     <div class="form-group col-md-6">
                         <label>Es visible al resto de los usuario? (Es decir está baneado o no)</label>
