@@ -106,7 +106,7 @@
                             <div class="form-group row mb-0">
                                 <div class="col-md-6 offset-md-4">
                                     <button type="submit" class="normalButton rounded btn-lg active">
-                                        Crear comida
+                                        Crear ingrediente
                                     </button>
                                 </div>
                             </div>

@@ -128,6 +128,7 @@ class IngredienteController extends Controller
         $ingrediente->caracteristicas=$request->ingredienteCaracteristicas;
         $ingrediente->ubicacion=$request->ingredienteUbicacion;
         $ingrediente->tipo=$request->ingredienteTipo;
+        $ingrediente->isVisible=true;
         if ($request->hasFile('imagen')) {
             if($request->file('imagen')->isValid()) {
                 try {
