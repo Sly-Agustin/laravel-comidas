@@ -43,7 +43,7 @@
         <p>No hay imágen disponible, puedes agregar una en el link de abajo</p>        
         @endif
         @if ($datos->ubicacion!=null)
-        <p class="py-4">Ubicación: {{$datos->ubicación}} </p>
+        <p class="py-4">Ubicación: {{$datos->ubicacion}} </p>
         @endif
         @if ($datos->descripcion!=null)
         <p> Descripcion: {{$datos->descripcion}}</p>
