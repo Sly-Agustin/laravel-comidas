@@ -40,7 +40,7 @@
         @if ($datos->imagen!=null)
         <img src="data:image/png;base64,{{$datos->imagen}}" class="py-2 d-inline-block float-right img-thumbnail w-50 h-50" alt="{{$datos->nombre}}img">
         @else
-        <p>No hay imágen disponible, puedes agregar una con el boton de abajo</p>        
+        <p>No hay imágen disponible, puedes agregar una en el link de abajo</p>        
         @endif
         @if ($datos->ubicacion!=null)
         <p class="py-4">Ubicación: {{$datos->ubicación}} </p>
