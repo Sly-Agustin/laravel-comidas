@@ -1,62 +1,53 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+## Idea a Implementar
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+La idea es implementar una aplicación que contenga contenga comidas, recetas, métodos de preparación, ingredientes junto con otros datos interesantes sobre las mismas.
 
-## About Laravel
+La aplicación ofrecerá una amplia variedad de filtros para poder acceder a la comida que querammos cocinar u obtener información, ya sea por región, ingredientes disponibles o sencillamente buscando el nombre de la misma. Además de comidas la aplicación puede expandirse a bebidas, cocteles, infusiones, etc.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Tema y conexión
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+El proyecto está relacionado directamente con el tema comida.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Diagrama ER
 
-## Learning Laravel
+![diagramaiaw2021](https://user-images.githubusercontent.com/21326227/121816879-896eef00-cc54-11eb-86fb-8f5b794e4400.png)
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+(El diagrama se encuentra sujeto a cambios en el futuro debido a mejoras, optimizaciones o ideas)
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Actualizaciones a los datos
 
-## Laravel Sponsors
+Tendremos 2 tipos de usuarios: Los administradores y los usuarios normales.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+Los usuarios normales podrán:
+- Agregar comidas.
+- Agregar recetas.
+- Agregar ingredientes.
+- Agregar contenido faltante a las comidas e ingredientes, por ejemplo ante el caso de que una comida no tenga una foto se permite que los usuarios agreguen una, lo mismo con otros atributos como ubicación o descripción.
+- Calificar recetas. Esto hace que los usuarios influyan indirectamente sobre la receta.
 
-### Premium Partners
+Los administradores podrán:
+- Crear, modificar o borrar recetas.
+- Crear, modificar o borrar comidas.
+- Crear, modificar o borrar ingredientes.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
+## Usuarios por default
+La aplicación cuenta con 1 usuario administrador por default cuyas credenciales son:
+- mail: agustin_sly@hotmail.com
+- contraseña: contrasenia
+También se cuenta con 10 cuentas usuario, reemplazar la X por un número del 1-9:
+- mail: usarioX@gmail.com
+- contraseña: contrasenia
 
-## Contributing
+En caso de querer usar un usuario propio se puede crear con el botón "registrarse" en la parte superior derecha de la página.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## Alcances de los roles
+Como invitado se puede navegar libremente por la página y acceder a toda la información sobre comidas, recetas e ingredientes. Sin embargo cosas que impliquen agregar o modificar algo de las mismas como agregar una comida o puntuar una receta requieren estar logueado. Si bien los usuarios pueden agregar una descripción/foto/etc faltante a algo que no lo tenga, para modificar algo que ya tenga estas propiedades seteadas se requiere permiso de administrador, por ejemplo modificar la descripción ya seteada de una comida.
 
-## Code of Conduct
+## Información del Servicio Web
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+El servicio web permitirá acceder a información sobre las diferentes comidas, recetas e ingredientes. Podremos acceder a las mismas mediante filtros por ingredientes o directamente el nombre de la comida.
 
-## Security Vulnerabilities
+## Visualización y Acceso a la Información
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Proyecto Javascript - React/Vue permitira al usuario visualizar informacion de las comidas disponibles en la aplicación de manera interactiva y amigable, permitiendo agregar
+filtros de busqueda acerca de comidas o ingredientes. Por ejemplo mostrar unicamente comidas con cierto ingrediente.

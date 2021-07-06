@@ -1,0 +1,48 @@
+.badge-colorBackground{
+    color: #fff;
+    background-color: #fc7474;
+}
+
+.colorBackground{
+    color: #aa0b1d ;
+}
+.borderHr{
+    border-bottom: 2px solid #aa0b1d;
+}
+.borderLateral{
+    border-left: 2px solid #aa0b1d;
+}
+.textarea {
+    display: block;
+    width: 100%;
+    overflow: hidden;
+    resize: both;
+    min-height: 40px;
+    line-height: 20px;
+}
+
+.ingredienteCantidad{
+    margin-left: 48px;
+    padding-right: 0;
+    padding-left: 8px;
+    white-space: nowrap;
+    align-self: flex-end;
+}
+
+.listaIngredientes{
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 12px;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+li.page-item.active span.page-link{
+    background-color: #fc7474;
+    border-color: #fc7474;
+    color: #000000;
+}

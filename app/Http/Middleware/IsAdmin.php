@@ -21,6 +21,7 @@ class IsAdmin
             return $next($request);
        }
 
-       return redirect('home')->with('error','You have not admin access');
+       //return redirect('home')->with('error','No tiene privilegios de administrador');
+       return back()->with('error','No tiene privilegios de administrador');
     }
 }

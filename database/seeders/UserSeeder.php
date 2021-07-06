@@ -22,7 +22,6 @@ class UserSeeder extends Seeder
             $usuario->name = 'Usuario '.$i;
             $usuario->email = 'usuario'.$i.'@gmail.com';
             $usuario->password = Hash::make('contrasenia');
-            //$usuario->api_token = Str::random(60);
             $usuario->api_token = bin2hex(openssl_random_pseudo_bytes(30));
             $usuario->isAdmin = false;
             $usuario->save();
