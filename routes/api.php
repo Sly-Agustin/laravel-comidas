@@ -21,12 +21,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 // Nos aseguramos de responder json con esto
 Route::group(['middleware' => ['json.response']], function () {
     Route::post('comidas/{id}/addimage', [App\Http\Controllers\ApiController::class, 'addImageComida']);
+    Route::get('comidas', [App\Http\Controllers\ApiController::class, 'getComidas']);
+    Route::get('comidas/{id}', [App\Http\Controllers\ApiController::class, 'getComida']);
+    Route::get('comidas/{id}/imagen', [App\Http\Controllers\ApiController::class, 'getComidaImagen']);
+    Route::get('ingredientes', [App\Http\Controllers\ApiController::class, 'getIngredientes']);
+    Route::get('ingredientes/{id}', [App\Http\Controllers\ApiController::class, 'getIngrediente']);
+    Route::get('ingredientes/{id}/imagen', [App\Http\Controllers\ApiController::class, 'getIngredienteImagen']);
 });
-Route::group(['middleware' => ['json.response', 'auth:api']], function () {
-
-});
-
-Route::get('comidas', [App\Http\Controllers\ApiController::class, 'getComidas']);
-Route::get('comidas/{id}', [App\Http\Controllers\ApiController::class, 'getComida']);
-Route::post('login', [App\Http\Controllers\ApiController::class, 'login']);
 

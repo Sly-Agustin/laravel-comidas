@@ -12,6 +12,12 @@ use App\Models\Voto;
 use App\Models\User;
 use App\Http\Requests\UpdateFotoComidaAPI;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Routing\UrlGenerator;
+// Files
+use Illuminate\Support\Str;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
+use Symfony\Component\HttpFoundation\File\File;
 
 // Login
 use App\Http\Controllers\Controller;
@@ -35,6 +41,13 @@ class ApiController extends Controller
         }
         return true;
     }
+    private function chequearIdIngrediente($idIngrediente){
+        $ingrediente = Ingrediente::find($idIngrediente);
+        if ($ingrediente==null){
+            return false;
+        }
+        return true;
+    }
 
     public function getComidas()
     {
@@ -52,11 +65,94 @@ class ApiController extends Controller
         }
         if (ApiController::chequearIdComida($id)){
             $comida = Comida::find($id);
+            if ($comida->imagen!=null){
+                $comida->imagen=url()->current()."/imagen";
+            }
             return response()->json($comida, 200);
         }
         return response()->json(['error' => 'No se encontro la comida'], 404);
     }
 
+    public function getComidaImagen(Request $request){
+        $id=$request->id;
+        if (ApiController::chequearIdValida($id)==false) {
+            return response()->json(['error' => 'Argumento inválido en URL, no es un numero entero'], 400);
+        }
+        if (ApiController::chequearIdComida($id)){
+            $comida = Comida::find($id);
+            /* El return comentado devolvería la imagen en base64, pero como queremos el archivo hacemos 
+            mas cosas abajo*/
+            //return response()->json(['imagen' => $comida->imagen], 200);
+
+            // Obtenemos la imagen en base64
+            $image = $comida->imagen;
+            //$image = preg_replace('/data:image\/(.*?);base64,/','',$image); // remove the type part
+            $image = str_replace('data:image/png;base64,', '', $image);
+            $image = str_replace(' ', '+', $image);
+            /* Creamos un archivo local con la imagen para devolverla, este archivo solo se creará una vez y se
+            reutilizará todas las veces que se pida la imagen. Averiguar si se puede hacer con archivos temporales*/
+            $nombreComida='comida'.$comida->nombre.'.'.'png';
+            if(!Storage::disk('local')->exists('nombreComida')){
+                // Este crea el archivo en /storage
+                \File::put(storage_path(). '/' . $nombreComida, base64_decode($image));
+                // Este crea el archuvo en /storage/app
+                //Storage::disk('local')->put($nombreComida,base64_decode($image));
+            }
+            //$imageName = Str::random(10).'.'.'jpg';
+            //Storage::disk('local')->put($imageName,base64_decode($image));
+            //Storage::disk('local')->delete($imageName);
+            //return response()->json(['Existe' => Storage::disk('local')->exists($imageName)],200);
+            //return response()->json($imageName, 200);
+            return response()->file(storage_path(). '/' . $nombreComida);
+            //return response()->file(Storage::disk('local')->url($nombreComida));
+            
+        }
+        return response()->json(['error' => 'No se encontro la comida'], 404);
+    }
+
+    public function getIngredientes(){
+        return response()->json(Ingrediente::all(), 200);
+    }
+
+    public function getIngrediente(Request $request){
+        $id=$request->id;
+        if (ApiController::chequearIdValida($id)==false) {
+            return response()->json(['error' => 'Argumento inválido en URL, no es un numero entero'], 400);
+        }
+        if (ApiController::chequearIdIngrediente($id)){
+            $ingrediente = Ingrediente::find($id);
+            if ($ingrediente->imagen!=null){
+                $ingrediente->imagen=url()->current()."/imagen";
+            }
+            return response()->json($ingrediente, 200);
+        }
+        return response()->json(['error' => 'No se encontro el ingrediente'], 404);
+    }
+
+    public function getIngredienteImagen(Request $request){
+        $id=$request->id;
+        if (ApiController::chequearIdValida($id)==false) {
+            return response()->json(['error' => 'Argumento inválido en URL, no es un numero entero'], 400);
+        }
+        if (ApiController::chequearIdIngrediente($id)){
+            $ingrediente = Ingrediente::find($id);
+            //return response()->json(['imagen' => $ingrediente->imagen], 200);
+
+            $image = $ingrediente->imagen;  // your base64 encoded
+            $image = str_replace('data:image/png;base64,', '', $image);
+            $image = str_replace(' ', '+', $image);
+            $nombreIngrediente='ingrediente'.$ingrediente->nombre.'.'.'png';
+            if(!Storage::disk('local')->exists('nombreIngrediente')){
+                // Este crea el archivo en /storage
+                \File::put(storage_path(). '/' . $nombreIngrediente, base64_decode($image));
+            }
+            return response()->file(storage_path(). '/' . $nombreIngrediente);
+        }
+        return response()->json(['error' => 'No se encontro el ingrediente'], 404);
+    }
+
+    /* Si bien quedó implementada y funciona bien, como no vamos a usar autenticación en el
+    proyecto no vamos a usar esta función*/
     public function addImageComida(UpdateFotoComidaAPI $request){
         $id=$request->id;
         // Chequeamos si la id es un número para no hacer un query malo en la base de datos
