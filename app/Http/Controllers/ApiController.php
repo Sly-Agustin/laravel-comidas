@@ -90,18 +90,15 @@ class ApiController extends Controller
             if($image==null){
                 return response()->json(['error' => 'La comida no tiene imagen'], 404);
             }
-            //$image = preg_replace('/data:image\/(.*?);base64,/','',$image); // remove the type part
             $image = str_replace('data:image/png;base64,', '', $image);
             $image = str_replace(' ', '+', $image);
-            /* Creamos un archivo local con la imagen para devolverla, este archivo solo se creará una vez y se
-            reutilizará todas las veces que se pida la imagen. Averiguar si se puede hacer con archivos temporales*/
+            /* Creamos un archivo local con la imagen para devolverla, es necesario re-crearlo ante cada request
+            porque podría haber cambiado la imagen entre una request y otra*/
             $nombreComida='comida'.$comida->nombre.'.'.'png';
-            if(!Storage::disk('local')->exists('nombreComida')){
-                // Este crea el archivo en /storage
-                \File::put(storage_path(). '/' . $nombreComida, base64_decode($image));
+            // Este crea el archivo en /storage
+            \File::put(storage_path(). '/' . $nombreComida, base64_decode($image));
                 // Este crea el archuvo en /storage/app
                 //Storage::disk('local')->put($nombreComida,base64_decode($image));
-            }
             //$imageName = Str::random(10).'.'.'jpg';
             //Storage::disk('local')->put($imageName,base64_decode($image));
             //Storage::disk('local')->delete($imageName);
@@ -149,10 +146,8 @@ class ApiController extends Controller
             $image = str_replace('data:image/png;base64,', '', $image);
             $image = str_replace(' ', '+', $image);
             $nombreIngrediente='ingrediente'.$ingrediente->nombre.'.'.'png';
-            if(!Storage::disk('local')->exists('nombreIngrediente')){
-                // Este crea el archivo en /storage
-                \File::put(storage_path(). '/' . $nombreIngrediente, base64_decode($image));
-            }
+            // Este crea el archivo en /storage
+            \File::put(storage_path(). '/' . $nombreIngrediente, base64_decode($image));
             return response()->file(storage_path(). '/' . $nombreIngrediente);
         }
         return response()->json(['error' => 'No se encontro el ingrediente'], 404);
