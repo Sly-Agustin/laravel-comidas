@@ -86,6 +86,10 @@ class ApiController extends Controller
 
             // Obtenemos la imagen en base64
             $image = $comida->imagen;
+            // Si la comida no tiene imagen devolvemos un 404
+            if($image==null){
+                return response()->json(['error' => 'La comida no tiene imagen'], 404);
+            }
             //$image = preg_replace('/data:image\/(.*?);base64,/','',$image); // remove the type part
             $image = str_replace('data:image/png;base64,', '', $image);
             $image = str_replace(' ', '+', $image);
@@ -139,6 +143,9 @@ class ApiController extends Controller
             //return response()->json(['imagen' => $ingrediente->imagen], 200);
 
             $image = $ingrediente->imagen;  // your base64 encoded
+            if($image==null){
+                return response()->json(['error' => 'El ingrediente no tiene imagen'], 404);
+            }
             $image = str_replace('data:image/png;base64,', '', $image);
             $image = str_replace(' ', '+', $image);
             $nombreIngrediente='ingrediente'.$ingrediente->nombre.'.'.'png';
