@@ -51,7 +51,11 @@ class ApiController extends Controller
 
     public function getComidas()
     {
-        return response()->json(Comida::all(), 200);
+        $comidas=Comida::all();
+        foreach($comidas as $comida){
+            $comida->imagen=url()->current()."/".$comida->id_comida."/imagen";
+        }
+        return response()->json($comidas, 200);
     }
 
     /*public function getComida(Comida $id){
@@ -112,7 +116,11 @@ class ApiController extends Controller
     }
 
     public function getIngredientes(){
-        return response()->json(Ingrediente::all(), 200);
+        $ingredientes=Ingrediente::all();
+        foreach($ingredientes as $ingrediente){
+            $ingrediente->imagen=url()->current()."/".$ingrediente->id_ingrediente."/imagen";
+        }
+        return response()->json($ingredientes, 200);
     }
 
     public function getIngrediente(Request $request){

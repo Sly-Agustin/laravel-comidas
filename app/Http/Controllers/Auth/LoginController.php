@@ -42,7 +42,7 @@ class LoginController extends Controller
 
     public function logout(Request $request)
     {
-        if( $request->is('api/*')){
+        /*if( $request->is('api/*')){
             if (Auth::guard('api')){
                 $user = Auth::guard('api')->user();
 
@@ -53,7 +53,7 @@ class LoginController extends Controller
 
                 return response()->json(['data' => 'User logged out.'], 200);
             }
-        }
+        }*/
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
