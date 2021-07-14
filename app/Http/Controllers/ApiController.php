@@ -123,9 +123,9 @@ class ApiController extends Controller
         foreach($comidas as $comida){
             $comida->imagen=route('getComidaImagen', ['id' => $comida->id_comida]);
         }
-        if($comidas->isEmpty()){
+        /*if($comidas->isEmpty()){
             return response()->json(['No hay coincidencias con su búsqueda'],200);
-        }
+        }*/
         return response()->json($comidas,200);
     }
 
