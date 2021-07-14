@@ -115,6 +115,20 @@ class ApiController extends Controller
         return response()->json(['error' => 'No se encontro la comida'], 404);
     }
 
+    public function getComidasLike(Request $request){
+        $busquedaEnMinuscula=strtolower($request->nombre);
+        $comidas = Comida::where('nombre', 'LIKE', '%'.$busquedaEnMinuscula.'%')->get();
+        /* A cada comida le asignamos la URL correspondiente a donde se encuentra alojada la imagen en la API
+        en lugar de devolver el base64*/  
+        foreach($comidas as $comida){
+            $comida->imagen=route('getComidaImagen', ['id' => $comida->id_comida]);
+        }
+        if($comidas->isEmpty()){
+            return response()->json(['No hay coincidencias con su búsqueda'],200);
+        }
+        return response()->json($comidas,200);
+    }
+
     public function getIngredientes(){
         $ingredientes=Ingrediente::all();
         foreach($ingredientes as $ingrediente){
@@ -159,6 +173,44 @@ class ApiController extends Controller
             return response()->file(storage_path(). '/' . $nombreIngrediente);
         }
         return response()->json(['error' => 'No se encontro el ingrediente'], 404);
+    }
+
+    public function getIngredientesLike(Request $request){
+        //return response()->json(route('getIngredientesLike', ['nombre' => $request->nombre]), 200);
+        $busquedaEnMinuscula=strtolower($request->nombre);
+        $ingredientes = Ingrediente::where('nombre', 'LIKE', '%'.$busquedaEnMinuscula.'%')->get();
+        /* A cada ingrediente le asignamos la URL correspondiente a donde se encuentra alojada la imagen en la API
+        en lugar de devolver el base64*/  
+        foreach($ingredientes as $ingrediente){
+            $ingrediente->imagen=route('getIngredienteImagen', ['id' => $ingrediente->id_ingrediente]);
+        }
+        /*$jsondelingrediente = $ingredientes;
+        foreach($jsondelingrediente as $ing){
+            echo (' '.$ing->id_ingrediente);
+        }*/
+        if($ingredientes->isEmpty()){
+            return response()->json(['No hay coincidencias con su búsqueda'],200);
+        }
+        return response()->json($ingredientes,200);
+    }
+
+    public function getRecetasComida(Request $request){
+        $recetas=Receta::where('comida_id', $request->id)->get();
+        return response()->json($recetas, 200);
+    }
+
+    public function getRecetaEspecifica(Request $request){
+        $receta=Receta::findOrFail($request->idReceta);
+        $pasos=Paso::all()->where('receta_id', $request->idReceta);
+        $seUtilizan=SeUtilizaEn::all()->where('receta_id', $request->idReceta);
+        $ingredientes=[];
+        foreach($seUtilizan as $id){
+            array_push($ingredientes, Ingrediente::findOrFail($id->ingrediente_id));
+        }
+        foreach($ingredientes as $ingrediente){
+            $ingrediente->imagen=route('getIngredienteImagen', ['id' => $ingrediente->id_ingrediente]);
+        }
+        return response()->json(['pasos' => $pasos, 'seUtilizan' => $seUtilizan, 'ingredientes' => $ingredientes],200);
     }
 
     /* Si bien quedó implementada y funciona bien, como no vamos a usar autenticación en el
