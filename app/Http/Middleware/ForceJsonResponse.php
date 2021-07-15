@@ -19,6 +19,13 @@ class ForceJsonResponse
     {
         $request->headers->set('Accept', 'application/json');
 
+        if ($request->getMethod() === 'OPTIONS') {
+            $this->cors->varyHeader($response, 'Access-Control-Request-Method');
+        }
+        
+        // you will never reach here
+        return $this->addHeaders($request, $response);
+
         return $next($request)
             ->header('Access-Control-Allow-Origin', '*')
             ->header('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE, OPTIONS')
