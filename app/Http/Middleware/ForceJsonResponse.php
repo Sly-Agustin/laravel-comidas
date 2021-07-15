@@ -18,7 +18,7 @@ class ForceJsonResponse
     public function handle(Request $request, Closure $next)
     {
         $request->headers->set('Accept', 'application/json');
-        $request->headers->set('Access-Control-Allow-Origin', '*');
+        $request->headers->set('Access-Control-Allow-Origin', 'https://sly-agustin-vue2.herokuapp.com');
 
         return $next($request)
             ->header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
