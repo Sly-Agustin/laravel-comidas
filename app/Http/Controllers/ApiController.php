@@ -201,6 +201,7 @@ class ApiController extends Controller
 
     public function getRecetaEspecifica(Request $request){
         $receta=Receta::findOrFail($request->idReceta);
+        //$receta=Receta::all()->where('id_receta', $request->idReceta);
         $pasos=Paso::all()->where('receta_id', $request->idReceta);
         $seUtilizan=SeUtilizaEn::all()->where('receta_id', $request->idReceta);
         $ingredientes=[];
@@ -210,7 +211,7 @@ class ApiController extends Controller
         foreach($ingredientes as $ingrediente){
             $ingrediente->imagen=route('getIngredienteImagen', ['id' => $ingrediente->id_ingrediente]);
         }
-        return response()->json(['pasos' => $pasos, 'seUtilizan' => $seUtilizan, 'ingredientes' => $ingredientes],200);
+        return response()->json(['pasos' => $pasos, 'seUtilizan' => $seUtilizan, 'ingredientes' => $ingredientes, 'receta' => $receta],200);
     }
 
     /* Si bien quedó implementada y funciona bien, como no vamos a usar autenticación en el
