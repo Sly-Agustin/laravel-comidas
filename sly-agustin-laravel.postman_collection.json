@@ -1,0 +1,562 @@
+{
+	"info": {
+		"_postman_id": "100fa1fa-d367-490c-9b01-2c300a481a62",
+		"name": "sly-agustin-laravel",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Comidas",
+			"item": [
+				{
+					"name": "Obtener todas las comidas",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://sly-agustin-laravel.herokuapp.com/api/comidas/",
+							"protocol": "https",
+							"host": [
+								"sly-agustin-laravel",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"comidas",
+								""
+							]
+						},
+						"description": "obtener todas las comidas disponibles en la base de datos, vuelven en formato JSON."
+					},
+					"response": []
+				},
+				{
+					"name": "Encontrar la comida con ID 1",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://sly-agustin-laravel.herokuapp.com/api/comidas/1",
+							"protocol": "https",
+							"host": [
+								"sly-agustin-laravel",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"comidas",
+								"1"
+							]
+						},
+						"description": "obtener la comida con ID 1 en la base de datos"
+					},
+					"response": []
+				},
+				{
+					"name": "Encontrar una comida con ID 999",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://sly-agustin-laravel.herokuapp.com/api/comidas/999",
+							"protocol": "https",
+							"host": [
+								"sly-agustin-laravel",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"comidas",
+								"999"
+							]
+						},
+						"description": "Obtener la comida 999 en la base de datos, por defecto no hay 999 comidas asique generalmente devuelve un 404, comida no encontrada"
+					},
+					"response": []
+				},
+				{
+					"name": "Tratar de obtener una comida con un ID que es string",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://sly-agustin-laravel.herokuapp.com/api/comidas/nosoyunnumero",
+							"protocol": "https",
+							"host": [
+								"sly-agustin-laravel",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"comidas",
+								"nosoyunnumero"
+							]
+						},
+						"description": "Envía un argumento que no es un número a la API, si se comporta bien debe devolver un error y un status 400 bad request."
+					},
+					"response": []
+				},
+				{
+					"name": "Tratar de obtener una comida con un id que es un número no entero",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://sly-agustin-laravel.herokuapp.com/api/comidas/1.1",
+							"protocol": "https",
+							"host": [
+								"sly-agustin-laravel",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"comidas",
+								"1.1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener imagen de la comida 1",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://sly-agustin-laravel.herokuapp.com/api/comidas/1/imagen",
+							"protocol": "https",
+							"host": [
+								"sly-agustin-laravel",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"comidas",
+								"1",
+								"imagen"
+							]
+						},
+						"description": "Obtener la imagen de una comida"
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar comidas",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://sly-agustin-laravel.herokuapp.com/api/busqueda/comidas/pollo",
+							"protocol": "https",
+							"host": [
+								"sly-agustin-laravel",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"busqueda",
+								"comidas",
+								"pollo"
+							]
+						},
+						"description": "Obtenemos las comidas parecidas a lo introducido por parámetro en la URL, esto se utiliza para filtrar comidas por nombre"
+					},
+					"response": []
+				}
+			],
+			"description": "Todas las request relacionadas a comidas se encuentran aqui",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Ingredientes",
+			"item": [
+				{
+					"name": "Obtener todos los ingredientes",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://sly-agustin-laravel.herokuapp.com/api/ingredientes",
+							"protocol": "https",
+							"host": [
+								"sly-agustin-laravel",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"ingredientes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener el ingrediente con ID 1",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://sly-agustin-laravel.herokuapp.com/api/ingredientes/1",
+							"protocol": "https",
+							"host": [
+								"sly-agustin-laravel",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"ingredientes",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Tratar de obtener un ingrediente inexistente",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://sly-agustin-laravel.herokuapp.com/api/ingredientes/999",
+							"protocol": "https",
+							"host": [
+								"sly-agustin-laravel",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"ingredientes",
+								"999"
+							]
+						},
+						"description": "Tratamos de obtener un ingrediente que no existe en la base de datos dandole un numero elevado de ID. Esperamos un error 404 y una respuesta JSON"
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener imagen del ingrediente con ID 93",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://sly-agustin-laravel.herokuapp.com/api/ingredientes/93/imagen",
+							"protocol": "https",
+							"host": [
+								"sly-agustin-laravel",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"ingredientes",
+								"93",
+								"imagen"
+							]
+						},
+						"description": "Obtenemos la imagen del ingrediente 93, en caso de existir nos devuelve la imagen en base 64, caso contrario devuelve null."
+					},
+					"response": []
+				},
+				{
+					"name": "Busqueda de ingredientes",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://sly-agustin-laravel.herokuapp.com/api/busqueda/ingredientes/aceite",
+							"protocol": "https",
+							"host": [
+								"sly-agustin-laravel",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"busqueda",
+								"ingredientes",
+								"aceite"
+							]
+						},
+						"description": "Buscamos ingredientes y devolvemos un json con aquellos que se parezcan a los recibidos por parámetro. En caso de no haber coincidencias se devuelve un json vacio."
+					},
+					"response": []
+				},
+				{
+					"name": "Busqueda de ingredientes con mayusculas y minusculas",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://sly-agustin-laravel.herokuapp.com/api/busqueda/ingredientes/PoLlO",
+							"protocol": "https",
+							"host": [
+								"sly-agustin-laravel",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"busqueda",
+								"ingredientes",
+								"PoLlO"
+							]
+						},
+						"description": "La API puede manejar consultas sin importar si están en mayuscual o minuscula"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Intentar acceder a una ruta inexistente",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://sly-agustin-laravel.herokuapp.com/api/rutaquenoexiste",
+					"protocol": "https",
+					"host": [
+						"sly-agustin-laravel",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"rutaquenoexiste"
+					]
+				},
+				"description": "Intenta acceder a una ruta que no existe, se espera un mensaje JSON con status 404"
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener las recetas de una comida",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://sly-agustin-laravel.herokuapp.com/api/recetasDeComida/1",
+					"protocol": "https",
+					"host": [
+						"sly-agustin-laravel",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"recetasDeComida",
+						"1"
+					]
+				},
+				"description": "Obtenemos las recetas asociadas a una comida. Si la receta no existe devuelve un json vacio."
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener receta en especifica",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://sly-agustin-laravel.herokuapp.com/api/receta/1",
+					"protocol": "https",
+					"host": [
+						"sly-agustin-laravel",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"receta",
+						"1"
+					]
+				},
+				"description": "Obtenemos los datos de una receta en específica, en este caso será de la receta con ID 1."
+			},
+			"response": []
+		}
+	]
+}
