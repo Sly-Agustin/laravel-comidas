@@ -130,7 +130,8 @@ class ApiController extends Controller
     }
 
     public function getIngredientes(){
-        $ingredientes=Ingrediente::all();
+        $ingredientes=Ingrediente::all()->where('isVisible', true);
+        $ingredientes=$ingredientes->sortBy('nombre');
         foreach($ingredientes as $ingrediente){
             $ingrediente->imagen=url()->current()."/".$ingrediente->id_ingrediente."/imagen";
         }
