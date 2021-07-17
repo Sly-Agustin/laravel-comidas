@@ -51,3 +51,6 @@ El servicio web permitirá acceder a información sobre las diferentes comidas, 
 
 Proyecto Javascript - React/Vue permitira al usuario visualizar informacion de las comidas disponibles en la aplicación de manera interactiva y amigable, permitiendo agregar
 filtros de busqueda acerca de comidas o ingredientes. Por ejemplo mostrar unicamente comidas con cierto ingrediente.
+
+## Video de la defensa
+https://youtu.be/xo1IJamLMqM
